@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/teal_primary"
+    android:padding="24dp">
+
+    <TextView
+        android:text="Selamat Datang!"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginBottom="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:text="Sign In"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/teal_primary"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:text="Sign Up"
+        android:backgroundTint="@color/teal_dark"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"/>
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <!-- Fragment Home -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.lamrehacehbesar.ui.fitur.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+
+        <!-- Aksi Navigasi yang dipanggil di HomeFragment.kt -->
+        <action
+            android:id="@+id/action_home_to_wisata"
+            app:destination="@id/wisataFragment" />
+    </fragment>
+
+    <!-- Placeholder untuk Fragment Wisata (Tujuan Navigasi) -->
+    <!-- Anda harus membuat file WisataFragment.kt nanti jika belum ada -->
+    <fragment
+        android:id="@+id/wisataFragment"
+        android:name="com.example.lamrehacehbesar.ui.fitur.wisata.WisataFragment"
+        android:label="Wisata"
+        tools:layout="@layout/fragment_home"/>
+    <!-- Saya pakai layout home sbg placeholder agar tidak error -->
+
+    <!-- Placeholder Fragment Lain -->
+    <fragment
+        android:id="@+id/ticketFragment"
+        android:label="Tiket" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:label="Profil" />
+
+</navigation>
