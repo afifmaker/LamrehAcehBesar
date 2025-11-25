@@ -8,21 +8,24 @@ import androidx.navigation.fragment.findNavController
 import com.example.lamrehacehbesar.R
 
 class WisataFragment : Fragment(R.layout.fragment_wisata) {
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Set Judul Header (Geopark / Sejarah)
+        // 1. Ambil Data Kategori (Geopark/Sejarah)
         val kategori = arguments?.getString("kategori") ?: "Wisata"
-        view.findViewById<TextView>(R.id.tvHeaderTitle).text = kategori
+
+        // PERBAIKAN DI SINI: Gunakan findViewById
+        val tvHeaderTitle = view.findViewById<TextView>(R.id.tvHeaderTitle)
+        tvHeaderTitle.text = kategori
 
         // 2. Tombol Back
         view.findViewById<View>(R.id.btnBack).setOnClickListener {
             findNavController().popBackStack()
         }
 
-        // 3. Tombol NAVIGASI (Ikon Bulat Hijau) -> Ke Peta
+        // 3. Menu Navigasi (Ke Peta)
         view.findViewById<View>(R.id.menuNavigasi).setOnClickListener {
-            // Kirim koordinat default Lamreh
             val bundle = Bundle().apply {
                 putDouble("lat", 5.608)
                 putDouble("lng", 95.500)
@@ -30,7 +33,7 @@ class WisataFragment : Fragment(R.layout.fragment_wisata) {
             findNavController().navigate(R.id.action_wisata_to_map, bundle)
         }
 
-        // 4. Klik Item List (Bukit Lamreh) -> Ke Detail
+        // 4. Klik Card (Ke Detail)
         view.findViewById<View>(R.id.cardBukitLamreh).setOnClickListener {
             findNavController().navigate(R.id.action_wisata_to_detail)
         }

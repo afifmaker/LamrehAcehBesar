@@ -5,35 +5,40 @@
     android:id="@+id/user_nav_graph"
     app:startDestination="@id/homeFragment">
 
-    <!-- Fragment Home -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.lamrehacehbesar.ui.fitur.home.HomeFragment"
-        android:label="Home"
         tools:layout="@layout/fragment_home">
-
-        <!-- Aksi Navigasi yang dipanggil di HomeFragment.kt -->
         <action
             android:id="@+id/action_home_to_wisata"
             app:destination="@id/wisataFragment" />
     </fragment>
 
-    <!-- Placeholder untuk Fragment Wisata (Tujuan Navigasi) -->
-    <!-- Anda harus membuat file WisataFragment.kt nanti jika belum ada -->
     <fragment
         android:id="@+id/wisataFragment"
         android:name="com.example.lamrehacehbesar.ui.fitur.wisata.WisataFragment"
-        android:label="Wisata"
-        tools:layout="@layout/fragment_home"/>
-    <!-- Saya pakai layout home sbg placeholder agar tidak error -->
+        tools:layout="@layout/fragment_wisata">
 
-    <!-- Placeholder Fragment Lain -->
+        <action
+            android:id="@+id/action_wisata_to_map"
+            app:destination="@id/mapFragment" />
+
+        <action
+            android:id="@+id/action_wisata_to_detail"
+            app:destination="@id/wisataDetailFragment" />
+    </fragment>
+
     <fragment
-        android:id="@+id/ticketFragment"
-        android:label="Tiket" />
+        android:id="@+id/wisataDetailFragment"
+        android:name="com.example.lamrehacehbesar.ui.fitur.detail.WisataDetailFragment"
+        tools:layout="@layout/fragment_wisata_detail">
+        <action
+            android:id="@+id/action_detail_to_map"
+            app:destination="@id/mapFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/profileFragment"
-        android:label="Profil" />
-
+        android:id="@+id/mapFragment"
+        android:name="com.example.lamrehacehbesar.ui.fitur.map.MapFragment"
+        tools:layout="@layout/fragment_map" />
 </navigation>

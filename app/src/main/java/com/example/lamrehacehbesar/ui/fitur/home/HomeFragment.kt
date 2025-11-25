@@ -11,15 +11,33 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Klik Menu "Geopark" -> Pindah ke Halaman Wisata
-        view.findViewById<CardView>(R.id.menuGeopark).setOnClickListener {
-            val bundle = Bundle().apply { putString("kategori", "Geopark") }
+        // Klik Menu "Sejarah"
+        view.findViewById<CardView>(R.id.menuSejarah).setOnClickListener {
+            val bundle = Bundle().apply { putString("kategori", "Sejarah") }
             findNavController().navigate(R.id.action_home_to_wisata, bundle)
         }
 
-        // Klik Menu "Sejarah" -> Pindah ke Halaman Wisata
-        view.findViewById<CardView>(R.id.menuSejarah).setOnClickListener {
-            val bundle = Bundle().apply { putString("kategori", "Sejarah") }
+        // Klik Menu "Kebencanaan"
+        view.findViewById<CardView>(R.id.menuKebencanaan).setOnClickListener {
+            val bundle = Bundle().apply { putString("kategori", "Kebencanaan") }
+            findNavController().navigate(R.id.action_home_to_wisata, bundle)
+        }
+
+        // Klik Menu "Wisata"
+        view.findViewById<CardView>(R.id.menuWisata).setOnClickListener {
+            val bundle = Bundle().apply { putString("kategori", "Wisata") }
+            findNavController().navigate(R.id.action_home_to_wisata, bundle)
+        }
+
+        // Klik Menu "Ekowisata"
+        view.findViewById<CardView>(R.id.menuEkowisata).setOnClickListener {
+            val bundle = Bundle().apply { putString("kategori", "Ekowisata") }
+            findNavController().navigate(R.id.action_home_to_wisata, bundle)
+        }
+
+        // Klik Menu "Geopark"
+        view.findViewById<CardView>(R.id.menuGeopark).setOnClickListener {
+            val bundle = Bundle().apply { putString("kategori", "Geopark") }
             findNavController().navigate(R.id.action_home_to_wisata, bundle)
         }
     }
