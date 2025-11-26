@@ -12,7 +12,10 @@ class WisataDetailFragment : Fragment(R.layout.fragment_wisata_detail) {
 
         // Tombol Navigasi di halaman detail
         view.findViewById<View>(R.id.btnStartNavigasi).setOnClickListener {
-            findNavController().navigate(R.id.action_detail_to_map)
+
+            // UPDATE: Arahkan ke Halaman Pilih Jalur Akses (RouteFragment)
+            // Pastikan ID ini sudah ada di user_nav_graph.xml
+            findNavController().navigate(R.id.action_detail_to_route)
         }
     }
 }

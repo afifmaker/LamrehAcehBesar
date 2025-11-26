@@ -18,14 +18,12 @@
         android:id="@+id/wisataFragment"
         android:name="com.example.lamrehacehbesar.ui.fitur.wisata.WisataFragment"
         tools:layout="@layout/fragment_wisata">
-
-        <action
-            android:id="@+id/action_wisata_to_map"
-            app:destination="@id/mapFragment" />
-
         <action
             android:id="@+id/action_wisata_to_detail"
             app:destination="@id/wisataDetailFragment" />
+        <action
+            android:id="@+id/action_wisata_to_map"
+            app:destination="@id/mapFragment" />
     </fragment>
 
     <fragment
@@ -33,12 +31,27 @@
         android:name="com.example.lamrehacehbesar.ui.fitur.detail.WisataDetailFragment"
         tools:layout="@layout/fragment_wisata_detail">
         <action
-            android:id="@+id/action_detail_to_map"
-            app:destination="@id/mapFragment" />
+            android:id="@+id/action_detail_to_route"
+            app:destination="@id/routeFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/routeFragment"
+        android:name="com.example.lamrehacehbesar.ui.fitur.route.RouteFragment"
+        tools:layout="@layout/fragment_route">
+        <action
+            android:id="@+id/action_route_to_navigation"
+            app:destination="@id/navigationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigationFragment"
+        android:name="com.example.lamrehacehbesar.ui.fitur.navigation.NavigationFragment"
+        tools:layout="@layout/fragment_navigation" />
 
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.lamrehacehbesar.ui.fitur.map.MapFragment"
         tools:layout="@layout/fragment_map" />
+
 </navigation>
