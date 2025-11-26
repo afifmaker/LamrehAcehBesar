@@ -1,4 +1,4 @@
-package com.example.lamrehacehbesar.ui.dashboard.user
+package com.example.lamrehacehbesar.dashboard.user
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

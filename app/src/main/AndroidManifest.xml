@@ -33,7 +33,7 @@
         <activity android:name=".ui.auth.LoginActivity" />
         <activity android:name=".ui.auth.RegisterActivity" />
         <activity android:name=".ui.dashboard.user.UserDashboardActivity" />
-        <activity android:name=".ui.dashboard.admin.AdminDashboardActivity" />
+        <activity android:name=".dashboard.admin.AdminDashboardActivity" />
 
     </application>
 

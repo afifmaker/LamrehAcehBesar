@@ -1,4 +1,4 @@
-package com.example.lamrehacehbesar.ui.dashboard.admin
+package com.example.lamrehacehbesar.dashboard.admin
 
 import android.content.Intent
 import android.os.Bundle
