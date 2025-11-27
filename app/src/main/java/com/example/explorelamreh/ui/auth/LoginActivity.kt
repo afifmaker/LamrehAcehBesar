@@ -1,4 +1,4 @@
-package com.example.lamrehacehbesar.ui.auth
+package com.example.explorelamreh.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lamrehacehbesar.R
-import com.example.lamrehacehbesar.ui.dashboard.admin.AdminDashboardActivity
-import com.example.lamrehacehbesar.ui.dashboard.user.UserDashboardActivity
+import com.example.explorelamreh.R
+import com.example.explorelamreh.ui.dashboard.admin.AdminDashboardActivity
+import com.example.explorelamreh.ui.dashboard.user.UserDashboardActivity
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

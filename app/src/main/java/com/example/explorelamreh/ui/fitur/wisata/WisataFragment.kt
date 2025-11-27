@@ -1,11 +1,11 @@
-package com.example.lamrehacehbesar.ui.fitur.wisata
+package com.example.explorelamreh.ui.fitur.wisata
 
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.lamrehacehbesar.R
+import com.example.explorelamreh.R
 
 class WisataFragment : Fragment(R.layout.fragment_wisata) {
 

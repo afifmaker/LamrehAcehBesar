@@ -1,10 +1,10 @@
-package com.example.lamrehacehbesar.ui.dashboard.user
+package com.example.explorelamreh.ui.dashboard.user
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.lamrehacehbesar.R
+import com.example.explorelamreh.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class UserDashboardActivity : AppCompatActivity() {

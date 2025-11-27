@@ -1,11 +1,11 @@
-package com.example.lamrehacehbesar.ui.auth
+package com.example.explorelamreh.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lamrehacehbesar.R
+import com.example.explorelamreh.R
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

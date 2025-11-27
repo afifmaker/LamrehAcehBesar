@@ -1,11 +1,11 @@
-package com.example.lamrehacehbesar.ui.dashboard.admin
+package com.example.explorelamreh.ui.dashboard.admin
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lamrehacehbesar.R
-import com.example.lamrehacehbesar.ui.auth.LoginActivity
+import com.example.explorelamreh.R
+import com.example.explorelamreh.ui.auth.LoginActivity
 
 class AdminDashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

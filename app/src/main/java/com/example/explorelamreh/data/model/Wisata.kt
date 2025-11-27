@@ -1,4 +1,4 @@
-package com.example.lamrehacehbesar.data.model
+package com.example.explorelamreh.data.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -1,9 +1,9 @@
-package com.example.lamrehacehbesar.ui.fitur.map
+package com.example.explorelamreh.ui.fitur.map
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.example.lamrehacehbesar.R
+import com.example.explorelamreh.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment

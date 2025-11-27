@@ -1,11 +1,11 @@
-package com.example.lamrehacehbesar.ui.fitur.home
+package com.example.explorelamreh.ui.fitur.home
 
 import android.os.Bundle
 import android.view.View
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.lamrehacehbesar.R
+import com.example.explorelamreh.R
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

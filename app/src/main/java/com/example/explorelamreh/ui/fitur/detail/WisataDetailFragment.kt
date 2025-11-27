@@ -1,10 +1,10 @@
-package com.example.lamrehacehbesar.ui.fitur.detail
+package com.example.explorelamreh.ui.fitur.detail
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.lamrehacehbesar.R
+import com.example.explorelamreh.R
 
 class WisataDetailFragment : Fragment(R.layout.fragment_wisata_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
