@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-// PENTING: Jangan ada "import android.R" di sini!
 import com.example.explorelamreh.R
 import com.example.explorelamreh.dashboard.admin.AdminDashboardActivity
 import com.example.explorelamreh.dashboard.user.UserDashboardActivity
@@ -19,7 +18,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Inisialisasi UI
         val etEmail = findViewById<EditText>(R.id.etEmailLogin)
         val etPassword = findViewById<EditText>(R.id.etPasswordLogin)
         val etRole = findViewById<EditText>(R.id.etRoleLogin)
@@ -27,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
         val tvRegister = findViewById<TextView>(R.id.tvGoToRegister)
         val btnBack = findViewById<ImageView>(R.id.btnBackLogin)
 
-        // Aksi Login
         btnLogin.setOnClickListener {
             val inputEmail = etEmail.text.toString().trim()
             val inputPassword = etPassword.text.toString().trim()
@@ -38,21 +35,27 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // Ambil data dari SharedPreferences
             val sharedPref = getSharedPreferences("UserDatabase", Context.MODE_PRIVATE)
             val savedEmail = sharedPref.getString("saved_email", null)
             val savedPassword = sharedPref.getString("saved_password", null)
             val savedRole = sharedPref.getString("saved_role", null)
 
+            // Logika Login Sederhana
             if (inputEmail == savedEmail && inputPassword == savedPassword) {
                 if (inputRole == savedRole) {
                     Toast.makeText(this@LoginActivity, "Login Berhasil!", Toast.LENGTH_SHORT).show()
 
+                    // Pindah halaman sesuai Role
                     if (savedRole == "admin") {
                         val intent = Intent(this@LoginActivity, AdminDashboardActivity::class.java)
+                        // Bersihkan stack agar tidak bisa back ke login
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                         finish()
                     } else if (savedRole == "user") {
                         val intent = Intent(this@LoginActivity, UserDashboardActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                         finish()
                     }
@@ -60,16 +63,19 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "Role salah! Akun ini terdaftar sebagai '$savedRole'", Toast.LENGTH_LONG).show()
                 }
             } else {
-                Toast.makeText(this@LoginActivity, "Email atau Password Salah", Toast.LENGTH_SHORT).show()
+                // Jika email/password salah atau belum ada akun
+                if (savedEmail == null) {
+                    Toast.makeText(this@LoginActivity, "Akun belum terdaftar!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@LoginActivity, "Email atau Password Salah", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
-        // Pindah ke Register
         tvRegister.setOnClickListener {
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
 
-        // Tombol Kembali
         btnBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
