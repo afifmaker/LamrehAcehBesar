@@ -1,4 +1,4 @@
-package com.example.lamrehacehbesar
+package com.example.explorelamreh
 
 import org.junit.Test
 

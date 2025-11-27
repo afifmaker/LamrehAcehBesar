@@ -1,12 +1,12 @@
-package com.example.lamrehacehbesar.ui.welcome
+package com.example.explorelamreh.ui.welcome
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.lamrehacehbesar.R
-import com.example.lamrehacehbesar.ui.auth.LoginActivity
-import com.example.lamrehacehbesar.ui.auth.RegisterActivity
+import com.example.explorelamreh.R
+import com.example.explorelamreh.ui.auth.LoginActivity
+import com.example.explorelamreh.ui.auth.RegisterActivity
 
 class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

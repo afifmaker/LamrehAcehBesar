@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.lamrehacehbesar"
+    namespace = "com.example.explorelamreh"
     compileSdk = 36
 
     defaultConfig {
