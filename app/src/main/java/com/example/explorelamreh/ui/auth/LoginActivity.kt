@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+// PENTING: Jangan ada "import android.R" di sini!
 import com.example.explorelamreh.R
 import com.example.explorelamreh.dashboard.admin.AdminDashboardActivity
 import com.example.explorelamreh.dashboard.user.UserDashboardActivity
@@ -18,20 +19,22 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // Inisialisasi UI
         val etEmail = findViewById<EditText>(R.id.etEmailLogin)
         val etPassword = findViewById<EditText>(R.id.etPasswordLogin)
         val etRole = findViewById<EditText>(R.id.etRoleLogin)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
-        val btnBack = findViewById<ImageView>(R.id.btnBackLogin)
         val tvRegister = findViewById<TextView>(R.id.tvGoToRegister)
+        val btnBack = findViewById<ImageView>(R.id.btnBackLogin)
 
+        // Aksi Login
         btnLogin.setOnClickListener {
-            val inputEmail = etEmail.text.toString()
-            val inputPassword = etPassword.text.toString()
-            val inputRole = etRole.text.toString().lowercase().trim()
+            val inputEmail = etEmail.text.toString().trim()
+            val inputPassword = etPassword.text.toString().trim()
+            val inputRole = etRole.text.toString().trim().lowercase()
 
             if (inputEmail.isEmpty() || inputPassword.isEmpty() || inputRole.isEmpty()) {
-                Toast.makeText(this, "Isi email, password, dan role!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LoginActivity, "Mohon isi semua data!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -42,25 +45,33 @@ class LoginActivity : AppCompatActivity() {
 
             if (inputEmail == savedEmail && inputPassword == savedPassword) {
                 if (inputRole == savedRole) {
-                    Toast.makeText(this, "Login Berhasil sebagai $savedRole", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Login Berhasil!", Toast.LENGTH_SHORT).show()
 
                     if (savedRole == "admin") {
-                        startActivity(Intent(this, AdminDashboardActivity::class.java))
-                    } else {
-                        startActivity(Intent(this, UserDashboardActivity::class.java))
+                        val intent = Intent(this@LoginActivity, AdminDashboardActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else if (savedRole == "user") {
+                        val intent = Intent(this@LoginActivity, UserDashboardActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
-                    finishAffinity()
                 } else {
-                    Toast.makeText(this, "Role salah! Akun ini terdaftar sebagai $savedRole", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@LoginActivity, "Role salah! Akun ini terdaftar sebagai '$savedRole'", Toast.LENGTH_LONG).show()
                 }
             } else {
-                Toast.makeText(this, "Email atau Password Salah!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@LoginActivity, "Email atau Password Salah", Toast.LENGTH_SHORT).show()
             }
         }
 
-        btnBack.setOnClickListener { finish() }
+        // Pindah ke Register
         tvRegister.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+        }
+
+        // Tombol Kembali
+        btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 }
