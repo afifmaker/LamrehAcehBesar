@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.lamrehacehbesar.ui.fitur.home.HomeFragment"
+        android:name="com.example.explorelamreh.ui.fitur.home.HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_wisata"
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/wisataFragment"
-        android:name="com.example.lamrehacehbesar.ui.fitur.wisata.WisataFragment"
+        android:name="com.example.explorelamreh.ui.fitur.wisata.WisataFragment"
         tools:layout="@layout/fragment_wisata">
         <action
             android:id="@+id/action_wisata_to_detail"
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/wisataDetailFragment"
-        android:name="com.example.lamrehacehbesar.ui.fitur.detail.WisataDetailFragment"
+        android:name="com.example.explorelamreh.ui.fitur.detail.WisataDetailFragment"
         tools:layout="@layout/fragment_wisata_detail">
         <action
             android:id="@+id/action_detail_to_route"
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/routeFragment"
-        android:name="com.example.lamrehacehbesar.ui.fitur.route.RouteFragment"
+        android:name="com.example.explorelamreh.ui.fitur.route.RouteFragment"
         tools:layout="@layout/fragment_route">
         <action
             android:id="@+id/action_route_to_navigation"
@@ -46,12 +46,12 @@
 
     <fragment
         android:id="@+id/navigationFragment"
-        android:name="com.example.lamrehacehbesar.ui.fitur.navigation.NavigationFragment"
+        android:name="com.example.explorelamreh.ui.fitur.navigation.NavigationFragment"
         tools:layout="@layout/fragment_navigation" />
 
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.example.lamrehacehbesar.ui.fitur.map.MapFragment"
+        android:name="com.example.explorelamreh.ui.fitur.map.MapFragment"
         tools:layout="@layout/fragment_map" />
 
 </navigation>
