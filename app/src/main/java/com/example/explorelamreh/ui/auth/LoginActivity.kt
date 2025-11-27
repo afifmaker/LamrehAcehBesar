@@ -17,7 +17,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         val etEmail = findViewById<EditText>(R.id.etEmailLogin)
         val etPassword = findViewById<EditText>(R.id.etPasswordLogin)
         val etRole = findViewById<EditText>(R.id.etRoleLogin)
