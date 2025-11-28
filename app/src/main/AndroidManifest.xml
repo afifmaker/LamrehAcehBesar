@@ -42,6 +42,7 @@
         <activity android:name=".dashboard.admin.kelola.AdminWisataActivity" />
         <activity android:name=".dashboard.admin.kelola.AdminSejarahActivity" />
         <activity android:name=".ui.auth.ForgotPasswordActivity" />
+        <activity android:name=".ui.fitur.WisataDetailActivity" />
 
     </application>
 
