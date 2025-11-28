@@ -98,10 +98,10 @@
                 android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/btn_fill_teal"
+                android:background="@drawable/bg_btn_white_green"
+                android:textColor="@color/text_btn_color"
                 android:text="Register"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginBottom="16dp"/>
 

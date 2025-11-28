@@ -60,12 +60,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/btn_fill_teal"
+
+                android:background="@drawable/bg_btn_white_green"
+                android:textColor="@color/text_btn_color"
+
                 android:elevation="0dp"
                 android:foreground="?attr/selectableItemBackground"
                 android:text="Sign In"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -73,12 +75,14 @@
                 android:id="@+id/btnSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:background="@drawable/btn_outline_teal"
+
+                android:background="@drawable/bg_btn_white_green"
+                android:textColor="@color/text_btn_color"
+
                 android:foreground="?attr/selectableItemBackground"
                 android:stateListAnimator="@null"
                 android:text="Sign Up"
                 android:textAllCaps="false"
-                android:textColor="@color/teal_primary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
