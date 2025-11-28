@@ -1,50 +1,89 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.example.explorelamreh.dashboard.admin
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.explorelamreh.R
+import com.example.explorelamreh.dashboard.admin.kelola.AdminEkowisataActivity
+import com.example.explorelamreh.dashboard.admin.kelola.AdminGeoparkActivity
+import com.example.explorelamreh.dashboard.admin.kelola.AdminKebencanaanActivity
+import com.example.explorelamreh.dashboard.admin.kelola.AdminSejarahActivity
+import com.example.explorelamreh.dashboard.admin.kelola.AdminWisataActivity
+import com.example.explorelamreh.databinding.ActivityAdminDashboardBinding
 import com.example.explorelamreh.ui.auth.LoginActivity
 
 class AdminDashboardActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityAdminDashboardBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_admin_dashboard)
+        binding = ActivityAdminDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        // Tombol Logout
-        findViewById<View>(R.id.btnLogoutAdmin).setOnClickListener {
+        setupListeners()
+    }
+
+    private fun setupListeners() {
+        binding.btnHomeAdmin.setOnClickListener {
+            Toast.makeText(this, "Anda sudah di Dashboard Admin", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnUserAdmin.setOnClickListener {
+            Toast.makeText(this, "Fitur Profil Admin belum tersedia", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnLogoutAdmin.setOnClickListener {
+            showLogoutConfirmation()
+        }
+
+        binding.btnAdminGeopark.setOnClickListener {
+            startActivity(Intent(this, AdminGeoparkActivity::class.java))
+        }
+
+        binding.btnAdminEkowisata.setOnClickListener {
+            startActivity(Intent(this, AdminEkowisataActivity::class.java))
+        }
+
+        binding.btnAdminBencana.setOnClickListener {
+            startActivity(Intent(this, AdminKebencanaanActivity::class.java))
+        }
+
+        binding.btnAdminWisata.setOnClickListener {
+            startActivity(Intent(this, AdminWisataActivity::class.java))
+        }
+
+        binding.btnAdminSejarah.setOnClickListener {
+            startActivity(Intent(this, AdminSejarahActivity::class.java))
+        }
+
+        binding.btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    private fun showLogoutConfirmation() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Konfirmasi Logout")
+        builder.setMessage("Apakah Anda yakin ingin keluar dari aplikasi?")
+
+        builder.setPositiveButton("Ya") { _, _ ->
             Toast.makeText(this, "Logout Berhasil", Toast.LENGTH_SHORT).show()
+
             val intent = Intent(this, LoginActivity::class.java)
-            // Membersihkan back stack agar tidak bisa kembali ke halaman admin setelah logout
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+            finish()
         }
 
-        // Tombol Menu Geopark
-        findViewById<View>(R.id.btnAdminGeopark).setOnClickListener {
-            Toast.makeText(this, "Menu Geopark", Toast.LENGTH_SHORT).show()
+        builder.setNegativeButton("Batal") { dialog, _ ->
+            dialog.dismiss()
         }
 
-        // Tombol Menu Ekowisata
-        findViewById<View>(R.id.btnAdminEkowisata).setOnClickListener {
-            Toast.makeText(this, "Menu Ekowisata", Toast.LENGTH_SHORT).show()
-        }
-
-        // Tombol Menu Kebencanaan
-        findViewById<View>(R.id.btnAdminBencana).setOnClickListener {
-            Toast.makeText(this, "Menu Kebencanaan", Toast.LENGTH_SHORT).show()
-        }
-
-        // Tombol Menu Wisata
-        findViewById<View>(R.id.btnAdminWisata).setOnClickListener {
-            Toast.makeText(this, "Menu Wisata", Toast.LENGTH_SHORT).show()
-        }
-
-        // Tombol Menu Sejarah
-        findViewById<View>(R.id.btnAdminSejarah).setOnClickListener {
-            Toast.makeText(this, "Menu Sejarah", Toast.LENGTH_SHORT).show()
-        }
+        val dialog = builder.create()
+        dialog.show()
     }
 }

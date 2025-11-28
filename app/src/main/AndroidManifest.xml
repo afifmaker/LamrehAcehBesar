@@ -32,8 +32,16 @@
 
         <activity android:name=".ui.auth.LoginActivity" />
         <activity android:name=".ui.auth.RegisterActivity" />
+
         <activity android:name=".dashboard.user.UserDashboardActivity" />
         <activity android:name=".dashboard.admin.AdminDashboardActivity" />
+
+        <activity android:name=".dashboard.admin.kelola.AdminGeoparkActivity" />
+        <activity android:name=".dashboard.admin.kelola.AdminEkowisataActivity" />
+        <activity android:name=".dashboard.admin.kelola.AdminKebencanaanActivity" />
+        <activity android:name=".dashboard.admin.kelola.AdminWisataActivity" />
+        <activity android:name=".dashboard.admin.kelola.AdminSejarahActivity" />
+        <activity android:name=".ui.auth.ForgotPasswordActivity" />
 
     </application>
 

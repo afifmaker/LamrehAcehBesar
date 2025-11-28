@@ -51,6 +51,8 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        // binding.tvForgotPassword dihapus karena tidak ada di XML
+        
         binding.tvGoToRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
@@ -59,10 +61,9 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        val viewRoot = binding.root
-        viewRoot.findViewById<android.view.View>(com.example.explorelamreh.R.id.btnGoogle)?.setOnClickListener { openUrl("https://accounts.google.com/") }
-        viewRoot.findViewById<android.view.View>(com.example.explorelamreh.R.id.btnFacebook)?.setOnClickListener { openUrl("https://facebook.com/") }
-        viewRoot.findViewById<android.view.View>(com.example.explorelamreh.R.id.btnApple)?.setOnClickListener { openUrl("https://appleid.apple.com/") }
+        binding.btnGoogle.setOnClickListener { openUrl("https://accounts.google.com/") }
+        binding.btnFacebook.setOnClickListener { openUrl("https://facebook.com/") }
+        binding.btnApple.setOnClickListener { openUrl("https://appleid.apple.com/") }
     }
 
     private fun goToDashboard(isAdmin: Boolean) {

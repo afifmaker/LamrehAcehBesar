@@ -67,17 +67,6 @@
                 android:layout_marginBottom="12dp"/>
 
             <EditText
-                android:id="@+id/etRole"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:backgroundTint="@color/gray_line"
-                android:hint="Role (admin / user)"
-                android:inputType="text"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"/>
-
-            <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
