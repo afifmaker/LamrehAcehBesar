@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.example.explorelamreh.ui.auth
 
 import android.content.Intent
@@ -40,17 +42,10 @@ class LoginActivity : AppCompatActivity() {
             val sharedPref = getSharedPreferences("UserDatabase", MODE_PRIVATE)
             val savedEmail = sharedPref.getString("saved_email", null)
             val savedPassword = sharedPref.getString("saved_password", null)
-            val savedRole = sharedPref.getString("saved_role", "user")
 
             if (inputEmail == savedEmail && inputPassword == savedPassword) {
                 Toast.makeText(this, "Login Berhasil!", Toast.LENGTH_SHORT).show()
-
-                if (savedRole == "admin") {
-                    goToDashboard(isAdmin = true)
-                } else {
-                    goToDashboard(isAdmin = false)
-                }
-
+                goToDashboard(isAdmin = false)
             } else {
                 Toast.makeText(this, "Email atau Password Salah!", Toast.LENGTH_SHORT).show()
             }
@@ -64,9 +59,10 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.btnGoogle.setOnClickListener { openUrl("https://accounts.google.com/") }
-        binding.btnFacebook.setOnClickListener { openUrl("https://facebook.com/") }
-        binding.btnApple.setOnClickListener { openUrl("https://appleid.apple.com/") }
+        val viewRoot = binding.root
+        viewRoot.findViewById<android.view.View>(com.example.explorelamreh.R.id.btnGoogle)?.setOnClickListener { openUrl("https://accounts.google.com/") }
+        viewRoot.findViewById<android.view.View>(com.example.explorelamreh.R.id.btnFacebook)?.setOnClickListener { openUrl("https://facebook.com/") }
+        viewRoot.findViewById<android.view.View>(com.example.explorelamreh.R.id.btnApple)?.setOnClickListener { openUrl("https://appleid.apple.com/") }
     }
 
     private fun goToDashboard(isAdmin: Boolean) {

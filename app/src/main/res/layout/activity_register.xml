@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_primary"
-    tools:ignore="HardcodedText, Autofill, ContentDescription">
+    tools:ignore="HardcodedText, Autofill, ContentDescription, TextContrastCheck, VisualLintBounds, VisualLintTextFieldSize, VisualLintButtonSize, TouchTargetSizeCheck">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -48,6 +48,7 @@
                 android:id="@+id/etUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:backgroundTint="@color/gray_line"
                 android:hint="Username"
                 android:inputType="textPersonName"
@@ -58,6 +59,7 @@
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:backgroundTint="@color/gray_line"
                 android:hint="Email Address"
                 android:inputType="textEmailAddress"
@@ -68,6 +70,7 @@
                 android:id="@+id/etRole"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:backgroundTint="@color/gray_line"
                 android:hint="Role (admin / user)"
                 android:inputType="text"
@@ -78,6 +81,7 @@
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:backgroundTint="@color/gray_line"
                 android:hint="Password"
                 android:inputType="textPassword"
@@ -88,6 +92,7 @@
                 android:id="@+id/etConfirmPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:backgroundTint="@color/gray_line"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"

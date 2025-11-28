@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_primary"
-    tools:ignore="HardcodedText, Autofill, ContentDescription">
+    tools:ignore="HardcodedText, Autofill, ContentDescription, TextContrastCheck, VisualLintBounds, VisualLintTextFieldSize, VisualLintButtonSize, TouchTargetSizeCheck">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -44,11 +44,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
-
             <EditText
                 android:id="@+id/etEmailLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:backgroundTint="@color/gray_line"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
@@ -59,6 +59,7 @@
                 android:id="@+id/etPasswordLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:backgroundTint="@color/gray_line"
                 android:hint="Password"
                 android:inputType="textPassword"

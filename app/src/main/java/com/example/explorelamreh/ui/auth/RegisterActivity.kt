@@ -1,6 +1,7 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.example.explorelamreh.ui.auth
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
@@ -29,8 +30,9 @@ class RegisterActivity : AppCompatActivity() {
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
             val confirmPass = binding.etConfirmPass.text.toString().trim()
-            val role = binding.etRole.text.toString().trim().lowercase()
-            if (username.isEmpty() || email.isEmpty() || password.isEmpty() || role.isEmpty()) {
+            val defaultRole = "user"
+
+            if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Semua data wajib diisi!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -47,19 +49,13 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (role != "admin" && role != "user") {
-                binding.etRole.error = "Role hanya boleh admin atau user"
-                binding.etRole.requestFocus()
-                return@setOnClickListener
-            }
-
-            val sharedPref = getSharedPreferences("UserDatabase", Context.MODE_PRIVATE)
+            val sharedPref = getSharedPreferences("UserDatabase", MODE_PRIVATE)
 
             sharedPref.edit {
                 putString("saved_username", username)
                 putString("saved_email", email)
                 putString("saved_password", password)
-                putString("saved_role", role)
+                putString("saved_role", defaultRole)
             }
 
             Toast.makeText(this, "Registrasi Berhasil! Silakan Login.", Toast.LENGTH_LONG).show()
