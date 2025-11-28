@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA">
+    android:background="#FAFAFA"
+    tools:ignore="HardcodedText, ContentDescription, UseCompoundDrawables, Autofill">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -124,7 +125,7 @@
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
                         android:hint="Cari tempat menarik..."
-                        android:paddingStart="12dp"
+                        android:paddingHorizontal="12dp"
                         android:textSize="14sp"
                         android:maxLines="1"
                         android:inputType="text"/>
@@ -146,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="4"
+                android:baselineAligned="false"
                 android:paddingHorizontal="16dp"
                 android:layout_marginTop="16dp">
 
@@ -363,6 +365,7 @@
         android:background="#009688"
         android:orientation="horizontal"
         android:weightSum="4"
+        android:baselineAligned="false"
         android:gravity="center_vertical"
         android:layout_alignParentBottom="true">
 
@@ -451,7 +454,6 @@
                 android:textColor="#FFF"
                 android:textSize="11sp"/>
         </LinearLayout>
-
     </LinearLayout>
 
 </RelativeLayout>

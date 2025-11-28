@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_bg">
+    android:background="@color/gray_bg"
+    tools:ignore="HardcodedText, UseCompoundDrawables">
 
     <View
         android:id="@+id/headerBg"
@@ -20,6 +22,7 @@
         android:src="@drawable/ic_arrow_back_24"
         app:tint="@color/white"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Tombol Kembali"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/headerBg"
         app:layout_constraintBottom_toBottomOf="@id/headerBg"/>
@@ -52,6 +55,7 @@
             android:src="@drawable/ic_person_24"
             android:background="@color/white"
             android:padding="4dp"
+            android:contentDescription="Foto Profil Admin"
             app:tint="@color/teal_dark"/>
     </androidx.cardview.widget.CardView>
 
@@ -90,7 +94,8 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:src="@drawable/geopark"
-                        android:scaleType="fitCenter"/>
+                        android:scaleType="fitCenter"
+                        android:contentDescription="Ikon Geopark"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -123,7 +128,8 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:src="@drawable/ekowisata"
-                        android:scaleType="fitCenter"/>
+                        android:scaleType="fitCenter"
+                        android:contentDescription="Ikon Ekowisata"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -156,7 +162,8 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:src="@drawable/kebencanaan"
-                        android:scaleType="fitCenter"/>
+                        android:scaleType="fitCenter"
+                        android:contentDescription="Ikon Kebencanaan"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -189,7 +196,8 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:src="@drawable/wisata"
-                        android:scaleType="fitCenter"/>
+                        android:scaleType="fitCenter"
+                        android:contentDescription="Ikon Wisata"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -224,7 +232,8 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:src="@drawable/history"
-                        android:scaleType="fitCenter"/>
+                        android:scaleType="fitCenter"
+                        android:contentDescription="Ikon Sejarah"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -248,6 +257,7 @@
         android:orientation="horizontal"
         android:elevation="16dp"
         android:weightSum="3"
+        android:baselineAligned="false"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
@@ -260,7 +270,8 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_home_24"
-                app:tint="@color/teal_primary"/>
+                app:tint="@color/teal_primary"
+                android:contentDescription="Ikon Home"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -281,7 +292,8 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_person_24"
-                app:tint="@color/gray_text"/>
+                app:tint="@color/gray_text"
+                android:contentDescription="Ikon User"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -302,7 +314,8 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/logout"
-                app:tint="@color/gray_text"/>
+                app:tint="@color/gray_text"
+                android:contentDescription="Ikon Logout"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

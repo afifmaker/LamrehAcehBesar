@@ -1,82 +1,91 @@
 package com.example.explorelamreh.ui.auth
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.explorelamreh.R
+import androidx.core.net.toUri
 import com.example.explorelamreh.dashboard.admin.AdminDashboardActivity
 import com.example.explorelamreh.dashboard.user.UserDashboardActivity
+import com.example.explorelamreh.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        val etEmail = findViewById<EditText>(R.id.etEmailLogin)
-        val etPassword = findViewById<EditText>(R.id.etPasswordLogin)
-        val etRole = findViewById<EditText>(R.id.etRoleLogin)
-        val btnLogin = findViewById<Button>(R.id.btnLogin)
-        val tvRegister = findViewById<TextView>(R.id.tvGoToRegister)
-        val btnBack = findViewById<ImageView>(R.id.btnBackLogin)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btnLogin.setOnClickListener {
-            val inputEmail = etEmail.text.toString().trim()
-            val inputPassword = etPassword.text.toString().trim()
-            val inputRole = etRole.text.toString().trim().lowercase()
+        setupListeners()
+    }
 
-            if (inputEmail.isEmpty() || inputPassword.isEmpty() || inputRole.isEmpty()) {
-                Toast.makeText(this@LoginActivity, "Mohon isi semua data!", Toast.LENGTH_SHORT).show()
+    private fun setupListeners() {
+        binding.btnLogin.setOnClickListener {
+            val inputEmail = binding.etEmailLogin.text.toString().trim()
+            val inputPassword = binding.etPasswordLogin.text.toString().trim()
+
+            if (inputEmail.isEmpty() || inputPassword.isEmpty()) {
+                Toast.makeText(this, "Mohon isi Email dan Password!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Ambil data dari SharedPreferences
-            val sharedPref = getSharedPreferences("UserDatabase", Context.MODE_PRIVATE)
+            if (inputEmail == "admin@explore.com" && inputPassword == "admin123") {
+                Toast.makeText(this, "Selamat Datang Admin!", Toast.LENGTH_SHORT).show()
+                goToDashboard(isAdmin = true)
+                return@setOnClickListener
+            }
+
+            val sharedPref = getSharedPreferences("UserDatabase", MODE_PRIVATE)
             val savedEmail = sharedPref.getString("saved_email", null)
             val savedPassword = sharedPref.getString("saved_password", null)
-            val savedRole = sharedPref.getString("saved_role", null)
+            val savedRole = sharedPref.getString("saved_role", "user")
 
-            // Logika Login Sederhana
             if (inputEmail == savedEmail && inputPassword == savedPassword) {
-                if (inputRole == savedRole) {
-                    Toast.makeText(this@LoginActivity, "Login Berhasil!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Login Berhasil!", Toast.LENGTH_SHORT).show()
 
-                    // Pindah halaman sesuai Role
-                    if (savedRole == "admin") {
-                        val intent = Intent(this@LoginActivity, AdminDashboardActivity::class.java)
-                        // Bersihkan stack agar tidak bisa back ke login
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-                        finish()
-                    } else if (savedRole == "user") {
-                        val intent = Intent(this@LoginActivity, UserDashboardActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-                        finish()
-                    }
+                if (savedRole == "admin") {
+                    goToDashboard(isAdmin = true)
                 } else {
-                    Toast.makeText(this@LoginActivity, "Role salah! Akun ini terdaftar sebagai '$savedRole'", Toast.LENGTH_LONG).show()
+                    goToDashboard(isAdmin = false)
                 }
+
             } else {
-                // Jika email/password salah atau belum ada akun
-                if (savedEmail == null) {
-                    Toast.makeText(this@LoginActivity, "Akun belum terdaftar!", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this@LoginActivity, "Email atau Password Salah", Toast.LENGTH_SHORT).show()
-                }
+                Toast.makeText(this, "Email atau Password Salah!", Toast.LENGTH_SHORT).show()
             }
         }
 
-        tvRegister.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+        binding.tvGoToRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        btnBack.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+        binding.btnBackLogin.setOnClickListener {
+            finish()
+        }
+
+        binding.btnGoogle.setOnClickListener { openUrl("https://accounts.google.com/") }
+        binding.btnFacebook.setOnClickListener { openUrl("https://facebook.com/") }
+        binding.btnApple.setOnClickListener { openUrl("https://appleid.apple.com/") }
+    }
+
+    private fun goToDashboard(isAdmin: Boolean) {
+        val intent = if (isAdmin) {
+            Intent(this, AdminDashboardActivity::class.java)
+        } else {
+            Intent(this, UserDashboardActivity::class.java)
+        }
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+    }
+
+    private fun openUrl(url: String) {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+            startActivity(intent)
+        } catch (_: Exception) {
+            Toast.makeText(this, "Browser tidak ditemukan", Toast.LENGTH_SHORT).show()
         }
     }
 }
