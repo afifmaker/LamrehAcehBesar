@@ -2,15 +2,13 @@ package com.example.explorelamreh.dashboard.admin.kelola
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.explorelamreh.R
 import com.example.explorelamreh.data.model.Wisata
 import com.example.explorelamreh.databinding.ActivityAdminListFeatureBinding
+import com.example.explorelamreh.databinding.DialogFormWisataBinding
 import com.example.explorelamreh.ui.adapter.AdminAdapter
 
 class AdminKebencanaanActivity : AppCompatActivity() {
@@ -38,7 +36,8 @@ class AdminKebencanaanActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         adapter = AdminAdapter(dataList,
             onEdit = { item, pos -> showDialogForm(item, pos) },
-            onDelete = { item, pos -> showDeleteConfirmation(item, pos) }
+            onDelete = { item, pos -> showDeleteConfirmation(item, pos) },
+            onItemClick = { item -> /* Logic to go to detail activity */ }
         )
         binding.rvData.layoutManager = LinearLayoutManager(this)
         binding.rvData.adapter = adapter
@@ -49,22 +48,27 @@ class AdminKebencanaanActivity : AppCompatActivity() {
         binding.fabAdd.setOnClickListener { showDialogForm(null, -1) }
     }
 
+    // --- LOGIC CRUD: CREATE & UPDATE (PERBAIKAN ERROR findViewById) ---
     private fun showDialogForm(existingItem: Wisata?, position: Int) {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_form_wisata, null)
-        val etNama = dialogView.findViewById<EditText>(R.id.etNama)
-        val etLokasi = dialogView.findViewById<EditText>(R.id.etLokasi)
-        val etDeskripsi = dialogView.findViewById<EditText>(R.id.etDeskripsi)
-        val tvTitle = dialogView.findViewById<TextView>(R.id.tvDialogTitle)
+        // Menggunakan View Binding untuk Dialog
+        val dialogBinding = DialogFormWisataBinding.inflate(LayoutInflater.from(this))
+
+        val etNama = dialogBinding.etNama
+        val etLokasi = dialogBinding.etLokasi
+        val etDeskripsi = dialogBinding.etDeskripsi
+        val tvTitle = dialogBinding.tvDialogTitle
 
         if (existingItem != null) {
             tvTitle.text = "Edit Data"
             etNama.setText(existingItem.nama)
             etLokasi.setText(existingItem.lokasi)
             etDeskripsi.setText(existingItem.deskripsi)
+        } else {
+            tvTitle.text = "Tambah Data Baru"
         }
 
         AlertDialog.Builder(this)
-            .setView(dialogView)
+            .setView(dialogBinding.root) // Menggunakan root dari binding dialog
             .setCancelable(false)
             .setPositiveButton("Simpan") { _, _ ->
                 val nama = etNama.text.toString()
@@ -95,7 +99,7 @@ class AdminKebencanaanActivity : AppCompatActivity() {
     private fun showDeleteConfirmation(item: Wisata, position: Int) {
         AlertDialog.Builder(this)
             .setTitle("Hapus Data?")
-            .setMessage("Hapus '${item.nama}'?")
+            .setMessage("Apakah Anda yakin ingin menghapus '${item.nama}'?")
             .setPositiveButton("Hapus") { _, _ ->
                 dataList.removeAt(position)
                 adapter.notifyItemRemoved(position)

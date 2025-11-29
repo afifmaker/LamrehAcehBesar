@@ -1,17 +1,17 @@
 package com.example.explorelamreh.dashboard.admin.kelola
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.explorelamreh.R
 import com.example.explorelamreh.data.model.Wisata
 import com.example.explorelamreh.databinding.ActivityAdminListFeatureBinding
+import com.example.explorelamreh.databinding.DialogFormWisataBinding
 import com.example.explorelamreh.ui.adapter.AdminAdapter
+import com.example.explorelamreh.ui.fitur.WisataDetailActivity
 
 class AdminWisataActivity : AppCompatActivity() {
 
@@ -37,7 +37,8 @@ class AdminWisataActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         adapter = AdminAdapter(dataList,
             onEdit = { item, pos -> showDialogForm(item, pos) },
-            onDelete = { item, pos -> showDeleteConfirmation(item, pos) }
+            onDelete = { item, pos -> showDeleteConfirmation(item, pos) },
+            onItemClick = { item -> goToDetail(item) } // Tambahkan onItemClick untuk detail
         )
         binding.rvData.layoutManager = LinearLayoutManager(this)
         binding.rvData.adapter = adapter
@@ -48,22 +49,36 @@ class AdminWisataActivity : AppCompatActivity() {
         binding.fabAdd.setOnClickListener { showDialogForm(null, -1) }
     }
 
+    // FUNGSI NAVIGASI DETAIL
+    private fun goToDetail(item: Wisata) {
+        val intent = Intent(this, WisataDetailActivity::class.java).apply {
+            putExtra("WISATA_DATA", item)
+        }
+        startActivity(intent)
+    }
+
+    // --- LOGIC CRUD: CREATE & UPDATE (PERBAIKAN ERROR findViewById) ---
     private fun showDialogForm(existingItem: Wisata?, position: Int) {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_form_wisata, null)
-        val etNama = dialogView.findViewById<EditText>(R.id.etNama)
-        val etLokasi = dialogView.findViewById<EditText>(R.id.etLokasi)
-        val etDeskripsi = dialogView.findViewById<EditText>(R.id.etDeskripsi)
-        val tvTitle = dialogView.findViewById<TextView>(R.id.tvDialogTitle)
+        // Menggunakan View Binding untuk Dialog
+        val dialogBinding = DialogFormWisataBinding.inflate(LayoutInflater.from(this))
+
+        // Akses views via Binding
+        val etNama = dialogBinding.etNama
+        val etLokasi = dialogBinding.etLokasi
+        val etDeskripsi = dialogBinding.etDeskripsi
+        val tvTitle = dialogBinding.tvDialogTitle
 
         if (existingItem != null) {
             tvTitle.text = "Edit Data"
             etNama.setText(existingItem.nama)
             etLokasi.setText(existingItem.lokasi)
             etDeskripsi.setText(existingItem.deskripsi)
+        } else {
+            tvTitle.text = "Tambah Data Baru"
         }
 
         AlertDialog.Builder(this)
-            .setView(dialogView)
+            .setView(dialogBinding.root) // Gunakan root dari binding dialog
             .setCancelable(false)
             .setPositiveButton("Simpan") { _, _ ->
                 val nama = etNama.text.toString()

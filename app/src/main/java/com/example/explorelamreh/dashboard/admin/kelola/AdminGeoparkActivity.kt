@@ -5,17 +5,13 @@ package com.example.explorelamreh.dashboard.admin.kelola
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.explorelamreh.R
 import com.example.explorelamreh.data.model.Wisata
 import com.example.explorelamreh.databinding.ActivityAdminListFeatureBinding
 import com.example.explorelamreh.ui.adapter.AdminAdapter
-import com.example.explorelamreh.ui.fitur.WisataDetailActivity // FIX: Tambahkan import Activity Detail
+import com.example.explorelamreh.ui.fitur.WisataDetailActivity
 
 class AdminGeoparkActivity : AppCompatActivity() {
 

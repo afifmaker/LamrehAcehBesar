@@ -1,5 +1,6 @@
 package com.example.explorelamreh.dashboard.admin.kelola
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.EditText
@@ -12,6 +13,7 @@ import com.example.explorelamreh.R
 import com.example.explorelamreh.data.model.Wisata
 import com.example.explorelamreh.databinding.ActivityAdminListFeatureBinding
 import com.example.explorelamreh.ui.adapter.AdminAdapter
+import com.example.explorelamreh.ui.fitur.WisataDetailActivity // Import yang Benar
 
 class AdminEkowisataActivity : AppCompatActivity() {
 
@@ -38,7 +40,8 @@ class AdminEkowisataActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         adapter = AdminAdapter(dataList,
             onEdit = { item, pos -> showDialogForm(item, pos) },
-            onDelete = { item, pos -> showDeleteConfirmation(item, pos) }
+            onDelete = { item, pos -> showDeleteConfirmation(item, pos) },
+            onItemClick = { item -> goToDetail(item) }
         )
         binding.rvData.layoutManager = LinearLayoutManager(this)
         binding.rvData.adapter = adapter
@@ -47,6 +50,13 @@ class AdminEkowisataActivity : AppCompatActivity() {
     private fun setupListeners() {
         binding.btnBack.setOnClickListener { finish() }
         binding.fabAdd.setOnClickListener { showDialogForm(null, -1) }
+    }
+
+    private fun goToDetail(item: Wisata) {
+        val intent = Intent(this, WisataDetailActivity::class.java).apply {
+            putExtra("WISATA_DATA", item)
+        }
+        startActivity(intent)
     }
 
     private fun showDialogForm(existingItem: Wisata?, position: Int) {
@@ -61,6 +71,8 @@ class AdminEkowisataActivity : AppCompatActivity() {
             etNama.setText(existingItem.nama)
             etLokasi.setText(existingItem.lokasi)
             etDeskripsi.setText(existingItem.deskripsi)
+        } else {
+            tvTitle.text = "Tambah Data Baru"
         }
 
         AlertDialog.Builder(this)
