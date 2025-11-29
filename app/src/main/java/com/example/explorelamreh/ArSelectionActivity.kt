@@ -1,32 +1,30 @@
-package com.example.explorelamreh // <-- Pastikan sesuai package Anda
+package com.example.explorelamreh
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
+import com.unity3d.player.UnityPlayerGameActivity // Pastikan sesuai nama Activity Unity Anda
 
 class ArSelectionActivity : AppCompatActivity() {
+
+    private lateinit var loadingOverlay: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ar_selection)
 
-        // Tombol Back
-        findViewById<View>(R.id.btnBack).setOnClickListener {
-            finish()
-        }
+        loadingOverlay = findViewById(R.id.loadingOverlay)
 
-        // === DATA WISATA DENGAN GAMBAR ===
-        // Pastikan nama file gambar di folder drawable Anda:
-        // wisata1.png, wisata2.png, dst...
+        findViewById<View>(R.id.btnBack).setOnClickListener { finish() }
+
         val listWisata = listOf(
             WisataArModel(1, "Benteng Inong Balee", R.drawable.wisata1),
             WisataArModel(2, "Benteng Kuta Lubok", R.drawable.wisata2),
@@ -50,52 +48,56 @@ class ArSelectionActivity : AppCompatActivity() {
         val rv = findViewById<RecyclerView>(R.id.rvWisataAr)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = WisataArAdapter(listWisata) { selectedItem ->
-            bukaUnityAr(selectedItem.id)
+            jalankanProsesAr(selectedItem.id)
         }
     }
 
-    private fun bukaUnityAr(idWisata: Int) {
-        Toast.makeText(this, "Scan AR: Wisata No. $idWisata", Toast.LENGTH_SHORT).show()
+    override fun onResume() {
+        super.onResume()
+        if (::loadingOverlay.isInitialized) {
+            loadingOverlay.visibility = View.GONE
+        }
+    }
 
-        // --- NANTI INTEGRASI UNITY DISINI ---
+    private fun jalankanProsesAr(idWisata: Int) {
+        // 1. Munculkan Pesan "Sabar Ya :D"
+        loadingOverlay.visibility = View.VISIBLE
+
+        // 2. Beri waktu 2 detik agar user sempat membaca pesannya
+        android.os.Handler(Looper.getMainLooper()).postDelayed({
+
+            // 3. Panggil Unity
+            try {
+                val intent = Intent(this, UnityPlayerGameActivity::class.java)
+                intent.putExtra("arguments", idWisata.toString())
+                startActivity(intent)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                loadingOverlay.visibility = View.GONE
+            }
+
+        }, 2000) // Delay baca 2 detik
     }
 }
 
-// === MODEL DATA BARU (Tambah variable gambar) ===
-data class WisataArModel(
-    val id: Int,
-    val nama: String,
-    val gambar: Int // ID Gambar dari Drawable
-)
+// === MODEL & ADAPTER ===
+data class WisataArModel(val id: Int, val nama: String, val gambar: Int)
 
-// === ADAPTER BARU ===
-class WisataArAdapter(
-    private val dataList: List<WisataArModel>,
-    private val onItemClick: (WisataArModel) -> Unit
-) : RecyclerView.Adapter<WisataArAdapter.ViewHolder>() {
-
+class WisataArAdapter(private val dataList: List<WisataArModel>, private val onItemClick: (WisataArModel) -> Unit) : RecyclerView.Adapter<WisataArAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Kita ubah tvNomor menjadi imgWisata
         val imgWisata: ImageView = view.findViewById(R.id.imgWisata)
         val tvNama: TextView = view.findViewById(R.id.tvNamaWisata)
         val card: View = view.findViewById(R.id.cardItem)
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_wisata_ar, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_wisata_ar, parent, false)
         return ViewHolder(view)
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataList[position]
-
         holder.tvNama.text = item.nama
-        // Set Gambar ke ImageView
         holder.imgWisata.setImageResource(item.gambar)
-
         holder.card.setOnClickListener { onItemClick(item) }
     }
-
     override fun getItemCount() = dataList.size
 }

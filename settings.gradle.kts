@@ -12,12 +12,22 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
         mavenCentral()
+
+        // === [BARU] TAMBAHKAN INI AGAR VUFORIA TERBACA ===
+        flatDir {
+            dirs ("unityLibrary/libs")
+        }
+        // =================================================
     }
 }
 
 rootProject.name = "ExploreLamreh"
 include(":app")
+
+// 2. TAMBAHKAN DUA BARIS INI (Mendaftarkan Unity)
+include(":unityLibrary")
+project(":unityLibrary").projectDir = file("./unityLibrary")
