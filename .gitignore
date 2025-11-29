@@ -1,0 +1,31 @@
+# --- Standar Android ---
+*.iml
+.gradle
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# --- Folder Build Aplikasi ---
+/app/build/
+
+# --- Folder Sampah Sistem (Penyebab Masalah 4GB) ---
+/extras/
+/system-images/
+/platforms/
+/platform-tools/
+/emulator/
+/skins/
+/fonts/
+/sources/
+/licenses/
+/build-tools/
+/tools/
+
+# --- Folder Sampah Tambahan (Terlihat di gambar awal Anda) ---
+/.temp/
+/.downloadIntermediates/
+/temp/

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "724868055838",
+    "project_id": "dashboard-ekowisata",
+    "storage_bucket": "dashboard-ekowisata.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724868055838:android:54891f8a2e104e71c87f0f",
+        "android_client_info": {
+          "package_name": "com.example.dashboardekowisata"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpA3nQzqmA3L8tPsiAJbYY2oqFNTgBHlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
