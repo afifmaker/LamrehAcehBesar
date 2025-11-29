@@ -51,8 +51,10 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // binding.tvForgotPassword dihapus karena tidak ada di XML
-        
+        binding.tvForgotPassword.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
+        }
+
         binding.tvGoToRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
@@ -61,9 +63,9 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.btnGoogle.setOnClickListener { openUrl("https://accounts.google.com/") }
-        binding.btnFacebook.setOnClickListener { openUrl("https://facebook.com/") }
-        binding.btnApple.setOnClickListener { openUrl("https://appleid.apple.com/") }
+        binding.btnGoogle.setOnClickListener { openUrl("https://accounts.google.com/signin") }
+        binding.btnFacebook.setOnClickListener { openUrl("https://www.facebook.com/login") }
+        binding.btnApple.setOnClickListener { openUrl("https://appleid.apple.com/sign-in") }
     }
 
     private fun goToDashboard(isAdmin: Boolean) {
